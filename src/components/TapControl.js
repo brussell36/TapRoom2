@@ -77,12 +77,12 @@ class TapControl extends React.Component{
       buttonText = "Return to Tap List";
     } else if (this.state.selectedTap != null) {
       currentlyVisibleState = <TapDetail 
-        ticket = {this.state.selectedTap}
+        tap = {this.state.selectedTap}
         onClickingEdit = {this.handleEditClick}
         onClickingDelete = {this.handleDeletingTap} />
       buttonText = "Return to Tap List";
     } else if (this.state.formVisibleOnPage) {
-      currentlyVisibleState = <NewTapForm onNewTicketCreation = {this.handleAddingNewTapToList} />
+      currentlyVisibleState = <NewTapForm onNewTapCreation = {this.handleAddingNewTapToList} />
       buttonText = "Return to Tap List";
     } else {
       currentlyVisibleState = <TapList 
@@ -91,10 +91,15 @@ class TapControl extends React.Component{
       buttonText = "Add New Tap";
     }
     return(
-      <React.Fragment>
-        {currentlyVisibleState}
-        <Button variant="primary" onClick={this.handleClick}>{buttonText}</Button>
-      </React.Fragment>
+      <div style={{ 
+        textAlign: 'center',
+        padding: '20px',
+        }}>
+        <React.Fragment>
+          {currentlyVisibleState}
+          <Button style={{margin: 10}} variant="primary" onClick={this.handleClick}>{buttonText}</Button>
+        </React.Fragment>
+      </div>
     );
   }
 }

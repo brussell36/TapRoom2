@@ -5,7 +5,7 @@ import ReusableForm from "./ReusableForm";
 
 function NewTapForm(props) {
 
-  function handleNewTicketFormSubmission(event){
+  function handleNewTapFormSubmission(event){
     event.preventDefault();
     props.onNewTapCreation({
       name: event.target.name.value,
@@ -19,7 +19,7 @@ function NewTapForm(props) {
   return(
     <React.Fragment>
       <ReusableForm 
-        formSubmissionHandler = {handleNewTicketFormSubmission}
+        formSubmissionHandler = {handleNewTapFormSubmission}
         buttonText = "Beer!" />
     </React.Fragment>
   );

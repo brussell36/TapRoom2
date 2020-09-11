@@ -5,6 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(https://www.seriouseats.com/2019/09/DinaAvila_PDXBreweries_Final_HighRES-DinaAvila_ModernTimes_DSC0254_-1500x1125.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 code {
