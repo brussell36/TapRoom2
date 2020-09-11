@@ -6,7 +6,8 @@ function Tap(props){
     <React.Fragment>
       <div onClick= {() => props.whenTapClicked(props.id)}>
         <h3>{props.name} - {props.brand}</h3>
-        <p>{props.price} - {props.alcoholContent}</p>
+        <h5>{props.price} - {props.alcoholContent}</h5>
+        <p>{props.pints}</p>
         <hr/>
       </div>
     </React.Fragment>
@@ -18,7 +19,7 @@ Tap.propTypes = {
   brand: PropTypes.string,
   price: PropTypes.string,
   alcoholContent: PropTypes.string,
-  whenTapClicked: PropTypes.func
+  whenTapClicked: PropTypes.func,
 };
 
 export default Tap;

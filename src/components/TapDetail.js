@@ -9,8 +9,8 @@ function TapDetail(props){
     <React.Fragment>
       <h1>Tap Detail</h1>
       <h3>{tap.name} - {tap.brand}</h3>
-      <p>{tap.price} - {tap.alcoholContent}</p>
-      <Button variant="info" onClick={ props.onClickingPint() }>Pour</Button>
+      <h5>{tap.price} - {tap.alcoholContent}</h5>
+      <p>{tap.pints}</p>
       <Button style={{margin: 10}} variant="success" onClick={ props.onClickingEdit }>Update Tap</Button>
       <Button variant="danger" onClick={() => onClickingDelete(tap.id) }>Delete Tap</Button>
       <hr/>
@@ -20,8 +20,7 @@ function TapDetail(props){
 
 TapDetail.propTypes = {
   tap: PropTypes.object,
-  onClickingDelete: PropTypes.func,
-  onClickingEdit: PropTypes.func
+  onClickingDelete: PropTypes.func
 };
 
 export default TapDetail;

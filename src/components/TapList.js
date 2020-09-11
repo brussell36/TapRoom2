@@ -13,6 +13,7 @@ function TapList(props) {
         brand = {tap.brand}
         price = {tap.price}
         alcoholContent = {tap.alcoholContent}
+        pints = {tap.pints}
         id = {tap.id}
         key = {tap.key} />
       )}

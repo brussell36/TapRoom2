@@ -14,7 +14,6 @@ class TapControl extends React.Component{
       masterTapList: [],
       selectedTap: null,
       editing: false,
-      pints: 124
     };
   }
 
@@ -60,16 +59,12 @@ class TapControl extends React.Component{
       masterTapList: editedMasterTapList,
       editing: false,
       selectedTap: null
-    })
+    });
   }
 
   handleChangingSelectedTap = (id) => {
     const selectedTap = this.state.masterTapList.filter(tap => tap.id === id)[0];
     this.setState({selectedTap: selectedTap});
-  }
-
-  handleDecreasePint = () => {
-    this.setState({ pints: this.state.pints - 1});
   }
 
   render(){
@@ -83,7 +78,6 @@ class TapControl extends React.Component{
     } else if (this.state.selectedTap != null) {
       currentlyVisibleState = <TapDetail 
         tap = {this.state.selectedTap}
-        onClickingPint = {this.handleDecreasePint}
         onClickingEdit = {this.handleEditClick}
         onClickingDelete = {this.handleDeletingTap} />
       buttonText = "Return to Tap List";
