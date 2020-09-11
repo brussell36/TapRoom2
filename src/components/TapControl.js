@@ -1,8 +1,8 @@
 import React from "react";
-import NewTicketForm from "./NewTicketForm";
-import TicketList from "./TicketList";
-import TicketDetail from "./TicketDetail";
-import EditTicketForm from './EditTicketForm';
+import NewTapForm from "./NewTapForm";
+import TapList from "./TapList";
+import TapDetail from "./TapDetail";
+import EditTapForm from './EditTapForm';
 import Button from 'react-bootstrap/Button';
 
 class TapControl extends React.Component{
@@ -16,4 +16,20 @@ class TapControl extends React.Component{
       editing: false
     };
   }
+
+  handleClick = () => {
+    if(this.state.selectedTap != null){
+      this.setState({
+        formVisibleOnPage: false,
+        selectedTap: null,
+        editing: false
+      });
+    } else {
+      this.setState(prevState => ({
+        formVisibleOnPage: !prevState.formVisibleOnPage
+      }));
+    }
+  }
+
+  
 }
