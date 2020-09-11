@@ -46,4 +46,24 @@ class TapControl extends React.Component{
       selectedTap: null
     });
   }
+
+  handleEditClick = () => {
+    this.setState({editing: true});
+  }
+
+  handleEditingTapInList = (tapToEdit) => {
+    const editedMasterTapList = this.state.masterTapList
+      .filter(tap => tap.id !== this.state.selectedTap.id)
+      .concat(tapToEdit);
+    this.setState({
+      masterTapList: editedMasterTapList,
+      editing: false,
+      selectedTap: null
+    })
+  }
+
+  handleChangingSelectedTap = (id) => {
+    const selectedTap = this.state.masterTapList.filter(tap => tap.id === id)[0];
+    this.setState({selectedTap: selectedTap});
+  }
 }
