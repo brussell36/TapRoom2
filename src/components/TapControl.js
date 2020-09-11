@@ -90,6 +90,13 @@ class TapControl extends React.Component{
         onTapSelection = {this.handleChangingSelectedTap} />
       buttonText = "Add New Tap";
     }
-    return()
+    return(
+      <React.Fragment>
+        {currentlyVisibleState}
+        <Button variant="primary" onClick={this.handleClick}>{buttonText}</Button>
+      </React.Fragment>
+    );
   }
 }
+
+export default TapControl;
