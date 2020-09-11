@@ -10,6 +10,7 @@ function TapDetail(props){
       <h1>Tap Detail</h1>
       <h3>{tap.name} - {tap.brand}</h3>
       <p>{tap.price} - {tap.alcoholContent}</p>
+      <Button variant="info" onClick={ props.onClickingPint() }>Pour</Button>
       <Button style={{margin: 10}} variant="success" onClick={ props.onClickingEdit }>Update Tap</Button>
       <Button variant="danger" onClick={() => onClickingDelete(tap.id) }>Delete Tap</Button>
       <hr/>
