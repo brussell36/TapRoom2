@@ -8,6 +8,8 @@
 
 This application will allow a user to track the different types of beer on tap at a tap room. The user will be able to see a list of all taps and see the details of a specific tap. The user will also be able to edit a taps details incase something was entered incorrectly. A tap can also be deleted when that keg is empty. Each time a beer is poured the amount of beer in the keg should be decreased and no more beer should be poured after the keg reaches 0 pints left.
 
+![App Diagram](https://app.diagrams.net/#G1qUlVGOoGevjuJuKBbJd3MVXM2RAaLT8M)
+
 ## Specifications
 
 | Behavior | Input | Output |
