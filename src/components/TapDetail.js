@@ -4,13 +4,17 @@ import Button from "react-bootstrap/Button";
 
 function TapDetail(props){
   const { tap, onClickingDelete } = props;
+  function pintsDecrease(tap){
+    return tap.pints -1;
+  }
 
   return (
     <React.Fragment>
       <h1>Tap Detail</h1>
       <h3>{tap.name} - {tap.brand}</h3>
       <h5>{tap.price} - {tap.alcoholContent}</h5>
-      <p>{tap.pints}</p>
+      <p>{tap.pints} Pints left</p>
+      <Button variant="info" onClick={ props.pintsDecrease }>Pour</Button>
       <Button style={{margin: 10}} variant="success" onClick={ props.onClickingEdit }>Update Tap</Button>
       <Button variant="danger" onClick={() => onClickingDelete(tap.id) }>Delete Tap</Button>
       <hr/>
@@ -18,9 +22,11 @@ function TapDetail(props){
   );
 }
 
+
 TapDetail.propTypes = {
   tap: PropTypes.object,
-  onClickingDelete: PropTypes.func
+  onClickingDelete: PropTypes.func,
+  onClickingPint: PropTypes.func
 };
 
 export default TapDetail;

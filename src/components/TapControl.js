@@ -67,6 +67,10 @@ class TapControl extends React.Component{
     this.setState({selectedTap: selectedTap});
   }
 
+  handleDecreasePint = () => {
+    this.setState({ pints: this.state.pints - 1});
+  }
+
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
@@ -78,6 +82,7 @@ class TapControl extends React.Component{
     } else if (this.state.selectedTap != null) {
       currentlyVisibleState = <TapDetail 
         tap = {this.state.selectedTap}
+        onClickingPint = {this.handleDecreasePint}
         onClickingEdit = {this.handleEditClick}
         onClickingDelete = {this.handleDeletingTap} />
       buttonText = "Return to Tap List";
