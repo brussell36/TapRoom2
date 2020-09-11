@@ -39,5 +39,11 @@ class TapControl extends React.Component{
     });
   }
 
-  
+  handleDeletingTap = (id) => {
+    const newMasterTapList = this.state.masterTapList.filter(tap => tap.id !== id);
+    this.setState({
+      masterTapList: newMasterTapList,
+      selectedTap: null
+    });
+  }
 }
