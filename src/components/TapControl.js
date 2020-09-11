@@ -67,10 +67,6 @@ class TapControl extends React.Component{
     this.setState({selectedTap: selectedTap});
   }
 
-  handleDecreasePint = () => {
-    this.setState({ pints: this.state.pints - 1});
-  }
-
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
