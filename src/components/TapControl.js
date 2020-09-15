@@ -62,6 +62,20 @@ class TapControl extends React.Component{
     });
   }
 
+  handleDecreasePint = (id) => {
+    const tap = this.state.masterTapList.filter(tap => tap.id === id)[0];
+    if (tap.pints > 0) {
+      tap.pints--;
+    }
+    const editedMasterTapList = this.state.masterTapList
+      .filter(tap => tap.id !== this.state.selectedTap.id)
+      .concat(tap);
+    this.setState({
+      masterTapList: editedMasterTapList,
+      editing: false,
+    });
+  } 
+
   handleChangingSelectedTap = (id) => {
     const selectedTap = this.state.masterTapList.filter(tap => tap.id === id)[0];
     this.setState({selectedTap: selectedTap});

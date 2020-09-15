@@ -32,12 +32,6 @@ function ReusableForm(props){
             name="alcoholContent"
             placeholder="ABV" />
         </Form.Group>
-        <Form.Group>
-          <Form.Control 
-            type="text"
-            name="pints"
-            placeholder="Number of Pints" />
-        </Form.Group>
         <div style={{padding: 10}}>
           <Button variant="outline-dark" type='submit'>{props.buttonText}</Button>
         </div>

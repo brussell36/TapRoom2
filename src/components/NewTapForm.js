@@ -12,7 +12,7 @@ function NewTapForm(props) {
       brand: event.target.brand.value,
       price: event.target.price.value,
       alcoholContent: event.target.alcoholContent.value,
-      pints: event.target.pints.value,
+      pints: 124,
       id: v4()
     });
   }
