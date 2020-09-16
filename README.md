@@ -21,6 +21,12 @@ This application will allow a user to track the different types of beer on tap a
 | 4. As a user, I want to see how many pints are left in a keg. | Pour button | 123 pints left |
 | 5. As a user, I want to be able to click a button next to a keg whenever I sell a pint of it. This should decrease the number of pints left by 1. Pints should not be able to go below 0. | Pour button | Out of Stock |
 
+## Setup/Installation Instructions
+
+* Clone this repository to your project directory https://github.com/brussell36/TapRoom.git
+* Run `npm install`
+* Run `npm start` to start a development server to view the project.
+
 ## Known Bugs
 
 _No known issues. Please contact me if you have any problems._
