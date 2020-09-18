@@ -25,4 +25,27 @@ describe('selectedTapReducer', () => {
   test('Should return null if no tap is selected', () => {
     expect(selectedTapReducer(null, {type: null})).toEqual(null);
   });
+
+  test('Should return selected tap', () => {
+    const { name, brand, price, alcoholContent, pints, id} = defaultState;
+    action = {
+      type: c.SELECT_TAP,
+      name,
+      brand,
+      price,
+      alcoholContent,
+      pints,
+      id
+    }
+    expect(selectedTapReducer(null, action)).toEqual({
+      [id]: {
+        name,
+        brand,
+        price,
+        alcoholContent,
+        pints,
+        id
+      }
+    });
+  });
 });
