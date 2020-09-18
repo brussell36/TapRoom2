@@ -44,4 +44,10 @@ describe('tap list actions', () => {
       id: 1
     });
   });
+
+  it('selectNoTap should create SELECT_NO_TAP action', () => {
+    expect(a.selectNoTap()).toEqual({
+      type: c.SELECT_NO_TAP
+    });
+  });
 });
