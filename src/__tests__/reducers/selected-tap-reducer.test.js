@@ -1,4 +1,5 @@
 import selectedTapReducer from './../../reducers/selected-tap-reducer';
+import * as c from './../../actions/ActionTypes';
 
 describe('selectedTapReducer', () => {
   let action;
