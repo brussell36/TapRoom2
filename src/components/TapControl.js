@@ -14,7 +14,6 @@ class TapControl extends React.Component{
     super(props);
     this.state = {
       selectedTap: null,
-      editing: false,
     };
   }
 
@@ -22,7 +21,6 @@ class TapControl extends React.Component{
     if(this.state.selectedTap != null){
       this.setState({
         selectedTap: null,
-        editing: false
       });
     } else {
       const { dispatch } = this.props;
@@ -33,8 +31,7 @@ class TapControl extends React.Component{
 
   handleAddingNewTapToList = (newTap) => {
     const { dispatch } = this.props;
-    const { name, brand, price, alcoholContent, pints, id } = newTap;
-    const action = a.addTap();
+    const action = a.addTap(newTap);
     dispatch(action);
     const action2 = a.toggleForm();
     dispatch(action2);
@@ -42,22 +39,24 @@ class TapControl extends React.Component{
 
   handleDeletingTap = (id) => {
     const { dispatch } = this.props;
-    const action = a.deleteTap();
+    const action = a.deleteTap(id);
     dispatch(action);
     this.setState({ selectedTap: null });
   }
 
   handleEditClick = () => {
-    this.setState({editing: true});
+    const { dispatch } = this.props;
+    const action = a.editTap()
+    dispatch(action);
   }
 
   handleEditingTapInList = (tapToEdit) => {
     const { dispatch } = this.props;
-    const { name, brand, price, alcoholContent, pints, id } = tapToEdit
-    const action = a.addTap();
+    const action = a.addTap(tapToEdit);
     dispatch(action);
+    const action2 = a.editTap();
+    dispatch(action2);
     this.setState({
-      editing: false,
       selectedTap: null
     });
   }
@@ -84,7 +83,7 @@ class TapControl extends React.Component{
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.editing) {
+    if (this.props.editing) {
       currentlyVisibleState = <EditTapForm 
         tap = {this.state.selectedTap}
         onEditTap = {this.handleEditingTapInList} />
@@ -121,13 +120,15 @@ class TapControl extends React.Component{
 
 TapControl.propTypes = {
   masterTapList: PropTypes.object,
-  formVisibleOnPage: PropTypes.bool
+  formVisibleOnPage: PropTypes.bool,
+  editing: PropTypes.bool
 }
 
 const mapStateToProps = state => {
   return {
     masterTapList: state.masterTapList,
-    formVisibleOnPage: state.formVisibleOnPage
+    formVisibleOnPage: state.formVisibleOnPage,
+    editing: state.editing
   }
 }
 

@@ -21,3 +21,10 @@ export const addTap = (tap) => {
     id
   }
 }
+
+export const editTap = (tapId) => {
+  return {
+    type: c.EDIT_TAP,
+    tapId
+  }
+}

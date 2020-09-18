@@ -26,7 +26,7 @@ function EditTapForm(props){
 }
 
 EditTapForm.propTypes = {
-  onEditTicket: PropTypes.func
+  onEditTap: PropTypes.func
 };
 
 export default EditTapForm;
