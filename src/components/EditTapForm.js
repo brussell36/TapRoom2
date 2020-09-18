@@ -1,7 +1,6 @@
 import React from "react";
 import ReusableForm from "./ReusableForm";
 import PropTypes from "prop-types";
-import { connect } from 'react-redux';
 
 function EditTapForm(props){
   const { tap } = props;
@@ -12,8 +11,8 @@ function EditTapForm(props){
       brand: event.target.brand.value,
       price: event.target.price.value,
       alcoholContent: event.target.alcoholContent.value,
-      pints: event.target.pints.value,
-      id: tap.id
+      pints: Object.values(tap)[0].pints,
+      id: Object.values(tap)[0].id
     });
   }
 
@@ -31,10 +30,4 @@ EditTapForm.propTypes = {
   tap: PropTypes.object
 };
 
-const mapStateToProps = (state, props) => {
-  return ({
-    tap: state.masterTapList[Object.values(props.tap)[0].id]
-  })
-}
-
-export default connect(mapStateToProps)(EditTapForm);
+export default EditTapForm;

@@ -14,12 +14,14 @@ class TapControl extends React.Component{
     const { dispatch } = this.props;
     const action = a.editFalse();
     const action2 = a.selectNoTap();
+    const action3 = a.toggleForm();
     if(this.props.selectedTap != null){
       dispatch(action);
       dispatch(action2);
-    } else {
-      const action3 = a.toggleForm()
       dispatch(action3);
+    } else {
+      const action4 = a.toggleForm()
+      dispatch(action4);
     }
   }
 
@@ -58,17 +60,16 @@ class TapControl extends React.Component{
   handleDecreasePint = (id) => {
     const { dispatch } = this.props;
     const tap = this.props.masterTapList[id];
-    const action = a.pour(tap);
     if (tap.pints > 0) {
+      const pour = tap.pints - 1;
+      tap.pints = pour; 
+      const action = a.addTap(tap)
       dispatch(action);
     }
-    const editedTap = this.props.masterTapList[id];
-    const action2 = a.addTap(editedTap)
-    dispatch(action2);
   } 
 
   handleChangingSelectedTap = (id) => {
-    const selectedTap  = this.props.masterTapList[id];
+    const selectedTap = this.props.masterTapList[id];
     console.log(selectedTap);
     const { dispatch } = this.props;
     const action = a.selectTap(selectedTap);
