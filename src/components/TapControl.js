@@ -12,12 +12,14 @@ class TapControl extends React.Component{
 
   handleClick = () => {
     const { dispatch } = this.props;
+    const action = a.editFalse();
+    const action2 = a.selectNoTap();
     if(this.props.selectedTap != null){
-      dispatch(a.selectTap());
-    } else {
-      const { dispatch } = this.props;
-      const action = a.toggleForm()
+      dispatch(action2);
       dispatch(action);
+    } else {
+      const action3 = a.toggleForm()
+      dispatch(action3);
     }
   }
 
@@ -39,7 +41,7 @@ class TapControl extends React.Component{
 
   handleEditClick = () => {
     const { dispatch } = this.props;
-    const action = a.editTap()
+    const action = a.editTrue()
     dispatch(action);
   }
 
@@ -47,29 +49,26 @@ class TapControl extends React.Component{
     const { dispatch } = this.props;
     const action = a.addTap(tapToEdit);
     dispatch(action);
-    const action2 = a.toggleForm()
+    const action2 = a.editFalse()
     dispatch(action2);
-    const action3 = a.selectTap(tapToEdit);
-    dispatch(action3);
   }
 
   handleDecreasePint = (id) => {
-    const tap = this.props.masterTapList.filter(tap => tap.id === id)[0];
+    const { dispatch } = this.props;
+    const tap = this.props.masterTapList[id];
+    const action = a.pour(tap);
     if (tap.pints > 0) {
-      tap.pints--;
+      dispatch(action);
     }
-    const editedMasterTapList = this.props.masterTapList
-      .filter(tap => tap.id !== this.props.selectedTap.id)
-      .concat(tap);
-    this.setState({
-      masterTapList: editedMasterTapList,
-    });
+    const editedTap = this.props.masterTapList[id];
+    const action2 = a.addTap(editedTap)
+    dispatch(action2);
   } 
 
   handleChangingSelectedTap = (id) => {
     const selectedTap  = this.props.masterTapList[id];
     const { dispatch } = this.props;
-    const action = a.selectTap(id);
+    const action = a.selectTap(selectedTap);
     const action2 = a.toggleForm();
     dispatch(action);
     dispatch(action2);

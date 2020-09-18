@@ -1,6 +1,6 @@
 import * as c from './ActionTypes';
 
-export const deleteTap = id => ({
+export const deleteTap = (id) => ({
   type: c.DELETE_TAP,
   id
 });
@@ -22,10 +22,15 @@ export const addTap = (tap) => {
   }
 }
 
-export const editTap = (tap) => {
+export const editTrue = () => {
   return {
-    type: c.EDIT_TAP,
-    tap
+    type: c.EDIT_TRUE,
+  }
+}
+
+export const editFalse = () => {
+  return {
+    type: c.EDIT_FALSE
   }
 }
 
@@ -45,5 +50,13 @@ export const selectTap = (tap) => {
 export const selectNoTap = () => {
   return {
     type: c.SELECT_NO_TAP
+  }
+}
+
+export const pour = (tap) => {
+  const { pints } = tap;
+  return {
+    type: c.POUR,
+    pints
   }
 }
