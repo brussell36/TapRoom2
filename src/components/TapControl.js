@@ -120,14 +120,16 @@ class TapControl extends React.Component{
 TapControl.propTypes = {
   masterTapList: PropTypes.object,
   formVisibleOnPage: PropTypes.bool,
-  editing: PropTypes.bool
+  editing: PropTypes.bool,
+  selectedTap: PropTypes.object
 }
 
 const mapStateToProps = state => {
   return {
     masterTapList: state.masterTapList,
     formVisibleOnPage: state.formVisibleOnPage,
-    editing: state.editing
+    editing: state.editing,
+    selectedTap: state.selectedTap
   }
 }
 
