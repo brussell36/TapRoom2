@@ -28,3 +28,22 @@ export const editTap = (tapId) => {
     tapId
   }
 }
+
+export const selectTap = (tap) => {
+  const { name, brand, price, alcoholContent, pints, id } = tap;
+  return {
+    type: c.SELECT_TAP,
+    name,
+    brand,
+    price,
+    alcoholContent,
+    pints,
+    id
+  }
+}
+
+export const selectNoTap = () => {
+  return {
+    type: c.SELECT_NO_TAP
+  }
+}
