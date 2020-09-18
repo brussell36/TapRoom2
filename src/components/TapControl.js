@@ -20,8 +20,7 @@ class TapControl extends React.Component{
       dispatch(action2);
       dispatch(action3);
     } else {
-      const action4 = a.toggleForm()
-      dispatch(action4);
+      dispatch(action3);
     }
   }
 
