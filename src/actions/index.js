@@ -1,8 +1,23 @@
+import * as c from './ActionTypes';
+
 export const deleteTap = id => ({
-  type: 'DELETE_TAP',
+  type: c.DELETE_TAP,
   id
 });
 
 export const toggleForm = () => ({
-  type: 'TOGGLE_FORM'
+  type: c.TOGGLE_FORM
 });
+
+export const addTap = (tap) => {
+  const { name, brand, price, alcoholContent, pints, id } = tap;
+  return {
+    type: c.ADD_TAP,
+    name,
+    brand,
+    price,
+    alcoholContent,
+    pints,
+    id
+  }
+}

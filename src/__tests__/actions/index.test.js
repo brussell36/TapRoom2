@@ -13,4 +13,16 @@ describe('tap list actions', () => {
       type: 'TOGGLE_FORM'
     });
   });
+
+  it('addTap should create ADD_TAP action', () => {
+    expect(a.addTap({name: 'IPA', brand: 'Pfriem', price: '$6', alcoholContent: '7.2%', pints: 124, id: 1})).toEqual({
+      type: 'ADD_TAP',
+      name: 'IPA',
+      brand: 'Pfriem',
+      price: '$6',
+      alcoholContent: '7.2%',
+      pints: 124,
+      id: 1
+    });
+  });
 });

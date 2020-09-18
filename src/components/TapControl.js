@@ -6,6 +6,7 @@ import EditTapForm from './EditTapForm';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as a from './../actions';
 
 class TapControl extends React.Component{
 
@@ -25,9 +26,7 @@ class TapControl extends React.Component{
       });
     } else {
       const { dispatch } = this.props;
-      const action = {
-        type: 'TOGGLE_FORM'
-      }
+      const action = a.toggleForm()
       dispatch(action);
     }
   }
@@ -35,28 +34,15 @@ class TapControl extends React.Component{
   handleAddingNewTapToList = (newTap) => {
     const { dispatch } = this.props;
     const { name, brand, price, alcoholContent, pints, id } = newTap;
-    const action = {
-      type: 'ADD_TAP',
-      name,
-      brand,
-      price,
-      alcoholContent,
-      pints,
-      id
-    }
+    const action = a.addTap();
     dispatch(action);
-    const action2 = {
-      type: 'TOGGLE_FORM'
-    }
+    const action2 = a.toggleForm();
     dispatch(action2);
   }
 
   handleDeletingTap = (id) => {
     const { dispatch } = this.props;
-    const action = {
-      type: 'DELETE_TAP',
-      id
-    }
+    const action = a.deleteTap();
     dispatch(action);
     this.setState({ selectedTap: null });
   }
@@ -68,15 +54,7 @@ class TapControl extends React.Component{
   handleEditingTapInList = (tapToEdit) => {
     const { dispatch } = this.props;
     const { name, brand, price, alcoholContent, pints, id } = tapToEdit
-    const action = {
-      type: 'ADD_TAP',
-      name,
-      brand,
-      price,
-      alcoholContent,
-      pints,
-      id
-    }
+    const action = a.addTap();
     dispatch(action);
     this.setState({
       editing: false,
@@ -85,11 +63,11 @@ class TapControl extends React.Component{
   }
 
   handleDecreasePint = (id) => {
-    const tap = this.state.masterTapList.filter(tap => tap.id === id)[0];
+    const tap = this.props.masterTapList.filter(tap => tap.id === id)[0];
     if (tap.pints > 0) {
       tap.pints--;
     }
-    const editedMasterTapList = this.state.masterTapList
+    const editedMasterTapList = this.props.masterTapList
       .filter(tap => tap.id !== this.state.selectedTap.id)
       .concat(tap);
     this.setState({
@@ -143,7 +121,7 @@ class TapControl extends React.Component{
 
 TapControl.propTypes = {
   masterTapList: PropTypes.object,
-  formVisibleOnPage: PropTypes.func
+  formVisibleOnPage: PropTypes.bool
 }
 
 const mapStateToProps = state => {
