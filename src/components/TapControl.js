@@ -4,6 +4,7 @@ import TapList from "./TapList";
 import TapDetail from "./TapDetail";
 import EditTapForm from './EditTapForm';
 import Button from 'react-bootstrap/Button';
+import { connect } from 'react-redux';
 
 class TapControl extends React.Component{
 
@@ -11,7 +12,6 @@ class TapControl extends React.Component{
     super(props);
     this.state = {
       formVisibleOnPage: false,
-      masterTapList: [],
       selectedTap: null,
       editing: false,
     };
@@ -32,19 +32,29 @@ class TapControl extends React.Component{
   }
 
   handleAddingNewTapToList = (newTap) => {
-    const newMasterTapList = this.state.masterTapList.concat(newTap);
-    this.setState({
-      masterTapList: newMasterTapList,
-      formVisibleOnPage: false
-    });
+    const { dispatch } = this.props;
+    const { name, brand, price, alcoholContent, pints, id } = newTap;
+    const action = {
+      type: 'ADD_TAP',
+      name,
+      brand,
+      price,
+      alcoholContent,
+      pints,
+      id
+    }
+    dispatch(action);
+    this.setState({ formVisibleOnPage: false });
   }
 
   handleDeletingTap = (id) => {
-    const newMasterTapList = this.state.masterTapList.filter(tap => tap.id !== id);
-    this.setState({
-      masterTapList: newMasterTapList,
-      selectedTap: null
-    });
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_TAP',
+      id
+    }
+    dispatch(action);
+    this.setState({ selectedTap: null });
   }
 
   handleEditClick = () => {
@@ -52,11 +62,19 @@ class TapControl extends React.Component{
   }
 
   handleEditingTapInList = (tapToEdit) => {
-    const editedMasterTapList = this.state.masterTapList
-      .filter(tap => tap.id !== this.state.selectedTap.id)
-      .concat(tapToEdit);
+    const { dispatch } = this.props;
+    const { name, brand, price, alcoholContent, pints, id } = tapToEdit
+    const action = {
+      type: 'ADD_TAP',
+      name,
+      brand,
+      price,
+      alcoholContent,
+      pints,
+      id
+    }
+    dispatch(action);
     this.setState({
-      masterTapList: editedMasterTapList,
       editing: false,
       selectedTap: null
     });
@@ -118,5 +136,7 @@ class TapControl extends React.Component{
     );
   }
 }
+
+TapControl = connect()(TapControl);
 
 export default TapControl;
