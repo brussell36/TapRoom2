@@ -1,6 +1,7 @@
 import React from "react";
 import ReusableForm from "./ReusableForm";
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
 
 function EditTapForm(props){
   const { tap } = props;
@@ -30,4 +31,10 @@ EditTapForm.propTypes = {
   tap: PropTypes.object
 };
 
-export default EditTapForm;
+const mapStateToProps = (state, props) => {
+  return ({
+    tap: state.masterTapList[Object.values(props.tap)[0].id]
+  })
+}
+
+export default connect(mapStateToProps)(EditTapForm);

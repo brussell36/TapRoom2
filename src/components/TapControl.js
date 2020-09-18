@@ -15,8 +15,8 @@ class TapControl extends React.Component{
     const action = a.editFalse();
     const action2 = a.selectNoTap();
     if(this.props.selectedTap != null){
-      dispatch(action2);
       dispatch(action);
+      dispatch(action2);
     } else {
       const action3 = a.toggleForm()
       dispatch(action3);
@@ -37,6 +37,8 @@ class TapControl extends React.Component{
     dispatch(action);
     const action2 = a.selectNoTap();
     dispatch(action2);
+    const action3 = a.toggleForm();
+    dispatch(action3);
   }
 
   handleEditClick = () => {
@@ -67,6 +69,7 @@ class TapControl extends React.Component{
 
   handleChangingSelectedTap = (id) => {
     const selectedTap  = this.props.masterTapList[id];
+    console.log(selectedTap);
     const { dispatch } = this.props;
     const action = a.selectTap(selectedTap);
     const action2 = a.toggleForm();
@@ -119,7 +122,7 @@ TapControl.propTypes = {
   selectedTap: PropTypes.object
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     masterTapList: state.masterTapList,
     formVisibleOnPage: state.formVisibleOnPage,
