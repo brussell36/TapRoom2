@@ -1,4 +1,4 @@
-import tapListReducer from './../reducers/tap-list-reducer';
+import tapListReducer from '../../reducers/tap-list-reducer';
 
 describe('tapListReducer', () => {
   let action;
