@@ -5,6 +5,7 @@ import TapDetail from "./TapDetail";
 import EditTapForm from './EditTapForm';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class TapControl extends React.Component{
 
@@ -95,7 +96,7 @@ class TapControl extends React.Component{
   } 
 
   handleChangingSelectedTap = (id) => {
-    const selectedTap = this.state.masterTapList.filter(tap => tap.id === id)[0];
+    const selectedTap = this.props.masterTapList[id];
     this.setState({selectedTap: selectedTap});
   }
 
@@ -119,7 +120,7 @@ class TapControl extends React.Component{
       buttonText = "Return to Tap List";
     } else {
       currentlyVisibleState = <TapList 
-        tapList = {this.state.masterTapList}
+        tapList = {this.props.masterTapList}
         onTapSelection = {this.handleChangingSelectedTap} />
       buttonText = "Add New Tap";
     }
@@ -137,6 +138,16 @@ class TapControl extends React.Component{
   }
 }
 
-TapControl = connect()(TapControl);
+TapControl.propTypes = {
+  masterTapList: PropTypes.object
+}
+
+const mapStateToProps = state => {
+  return {
+    masterTapList: state
+  }
+}
+
+TapControl = connect(mapStateToProps)(TapControl);
 
 export default TapControl;
