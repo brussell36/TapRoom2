@@ -22,10 +22,10 @@ export const addTap = (tap) => {
   }
 }
 
-export const editTap = (tapId) => {
+export const editTap = (tap) => {
   return {
     type: c.EDIT_TAP,
-    tapId
+    tap
   }
 }
 

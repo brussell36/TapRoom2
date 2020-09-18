@@ -6,22 +6,14 @@ import EditTapForm from './EditTapForm';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as a from './../actions';
+import * as a from './../actions/index';
 
 class TapControl extends React.Component{
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedTap: null,
-    };
-  }
-
   handleClick = () => {
-    if(this.state.selectedTap != null){
-      this.setState({
-        selectedTap: null,
-      });
+    const { dispatch } = this.props;
+    if(this.props.selectedTap != null){
+      dispatch(a.selectTap());
     } else {
       const { dispatch } = this.props;
       const action = a.toggleForm()
@@ -41,7 +33,8 @@ class TapControl extends React.Component{
     const { dispatch } = this.props;
     const action = a.deleteTap(id);
     dispatch(action);
-    this.setState({ selectedTap: null });
+    const action2 = a.selectNoTap();
+    dispatch(action2);
   }
 
   handleEditClick = () => {
@@ -54,11 +47,10 @@ class TapControl extends React.Component{
     const { dispatch } = this.props;
     const action = a.addTap(tapToEdit);
     dispatch(action);
-    const action2 = a.editTap();
+    const action2 = a.toggleForm()
     dispatch(action2);
-    this.setState({
-      selectedTap: null
-    });
+    const action3 = a.selectTap(tapToEdit);
+    dispatch(action3);
   }
 
   handleDecreasePint = (id) => {
@@ -67,7 +59,7 @@ class TapControl extends React.Component{
       tap.pints--;
     }
     const editedMasterTapList = this.props.masterTapList
-      .filter(tap => tap.id !== this.state.selectedTap.id)
+      .filter(tap => tap.id !== this.props.selectedTap.id)
       .concat(tap);
     this.setState({
       masterTapList: editedMasterTapList,
@@ -75,8 +67,12 @@ class TapControl extends React.Component{
   } 
 
   handleChangingSelectedTap = (id) => {
-    const selectedTap = this.props.masterTapList[id];
-    this.setState({selectedTap: selectedTap});
+    const selectedTap  = this.props.masterTapList[id];
+    const { dispatch } = this.props;
+    const action = a.selectTap(id);
+    const action2 = a.toggleForm();
+    dispatch(action);
+    dispatch(action2);
   }
 
   render(){
@@ -84,12 +80,12 @@ class TapControl extends React.Component{
     let buttonText = null;
     if (this.props.editing) {
       currentlyVisibleState = <EditTapForm 
-        tap = {this.state.selectedTap}
+        tap = {this.props.selectedTap}
         onEditTap = {this.handleEditingTapInList} />
       buttonText = "Return to Tap List";
-    } else if (this.state.selectedTap != null) {
+    } else if (this.props.selectedTap != null) {
       currentlyVisibleState = <TapDetail 
-        tap = {this.state.selectedTap}
+        tap = {this.props.selectedTap}
         onClickingPint = {this.handleDecreasePint}
         onClickingEdit = {this.handleEditClick}
         onClickingDelete = {this.handleDeletingTap} />
