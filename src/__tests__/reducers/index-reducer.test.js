@@ -1,4 +1,9 @@
 import rootReducer from '../../reducers/index';
+import { createStore } from 'redux';
+import tapListReducer from '../../reducers/tap-list-reducer';
+import formVisibleReducer from '../../reducers/form-visible-reducer';
+
+let store = createStore(rootReducer);
 
 describe('rootReducer', () => {
 
@@ -7,5 +12,35 @@ describe('rootReducer', () => {
       masterTapList: {},
       formVisibleOnPage: false
     });
+  });
+
+  test('Check that initial state of tapListReducer matches root reducer', () => {
+    expect(store.getState().masterTapList).toEqual(tapListReducer(undefined, {type:null}));
+  });
+
+  test('Check that initial state of formVisibleReducer matches root reducer', () => {
+    expect(store.getState().formVisibleOnPage).toEqual(formVisibleReducer(undefined, {type:null}));
+  });
+
+  test('Check that initial state of tapListReducer matches root reducer', () => {
+    const action = {
+      type: 'ADD_TAP',
+      name: 'IPA',
+      brand: 'Pfriem',
+      price: '$6',
+      alcoholContent: '7.2%',
+      pints: 124,
+      id: 1
+    }
+    store.dispatch(action);
+    expect(store.getState().masterTapList).toEqual(tapListReducer(undefined, action));
+  });
+
+  test('Check that initial state of formVisibleReducer matches root reducer', () => {
+    const action = {
+      type: 'TOGGLE_FORM'
+    }
+    store.dispatch(action);
+    expect(store.getState().formVisibleOnPage).toEqual(formVisibleReducer(undefined, action));
   });
 });
