@@ -8,36 +8,36 @@ function ReusableForm(props){
   return(
     <React.Fragment>
       <Form onSubmit={props.formSubmissionHandler}>
-        <Form.Group controlId= 'tapName'>
+        <Form.Group controlId= 'name'>
           <Form.Control 
             type="text"
             name="name"
             placeholder="Name of Beer"
-            defaultValue={props.tapName} />
+            defaultValue={props.name} />
         </Form.Group>
-        <Form.Group controlId= 'tapBrand'>
+        <Form.Group controlId= 'brand'>
           <Form.Control 
             type="text"
             name="brand"
             placeholder="Brand Name"
-            defaultValue={props.tapBrand} />
+            defaultValue={props.brand} />
         </Form.Group>
-        <Form.Group controlId='tapPrice'>
+        <Form.Group controlId='price'>
           <Form.Control 
             type="text"
             name="price"
             placeholder="Price of a Pint"
-            defaultValue={props.tapPrice} />
+            defaultValue={props.price} />
         </Form.Group>
-        <Form.Group controlId='tapAlcoholContent'>
+        <Form.Group controlId='alcoholContent'>
           <Form.Control 
             type="text"
             name="alcoholContent"
             placeholder="ABV"
-            defaultValue={props.tapAlcoholContent} />
+            defaultValue={props.alcoholContent} />
         </Form.Group>
         <div style={{padding: 10}}>
-          <Button variant="outline-dark" type='submit'>{props.buttonText}</Button>
+          <Button variant="success" type='submit'>{props.buttonText}</Button>
         </div>
       </Form>
     </React.Fragment>
@@ -47,10 +47,10 @@ function ReusableForm(props){
 ReusableForm.propTypes = {
   formSubmissionHandler: PropTypes.func,
   buttonText: PropTypes.string,
-  tapName: PropTypes.string,
-  tapBrand: PropTypes.string,
-  tapPrice: PropTypes.string,
-  tapAlcoholContent: PropTypes.string
+  name: PropTypes.string,
+  brand: PropTypes.string,
+  price: PropTypes.string,
+  alcoholContent: PropTypes.string
 };
 
 export default ReusableForm;

@@ -71,7 +71,6 @@ class TapControl extends React.Component{
       .concat(tap);
     this.setState({
       masterTapList: editedMasterTapList,
-      editing: false,
     });
   } 
 

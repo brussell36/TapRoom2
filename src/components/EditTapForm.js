@@ -3,7 +3,7 @@ import ReusableForm from "./ReusableForm";
 import PropTypes from "prop-types";
 
 function EditTapForm(props){
-  const {tap} = props;
+  const { tap } = props;
   function handleEditTapFormSubmission(event){
     event.preventDefault();
     props.onEditTap({
@@ -26,7 +26,8 @@ function EditTapForm(props){
 }
 
 EditTapForm.propTypes = {
-  onEditTap: PropTypes.func
+  onEditTap: PropTypes.func,
+  tap: PropTypes.object
 };
 
 export default EditTapForm;
