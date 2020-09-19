@@ -5,7 +5,7 @@ export default ( state = false, action) => {
     case c.EDIT_TRUE:
       return !state;
     case c.EDIT_FALSE:
-      return !state;
+      return false;
     default:
       return state;
   }
